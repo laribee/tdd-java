@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: javax.money:money-api:1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.money/money-api/1.0/d057c7318508e3954aa4f9dcee1a4d53ea7bdcb8/money-api-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.money/money-api/1.0/6afbf39b8aca64d8a14dac7dc2c9479f56e6ff8a/money-api-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
