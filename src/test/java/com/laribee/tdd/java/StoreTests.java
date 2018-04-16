@@ -1,9 +1,5 @@
 package com.laribee.tdd.java;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.javamoney.moneta.Money;
-
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
 
@@ -14,12 +10,12 @@ import static org.mockito.Mockito.*;
 
 import org.mockito.ArgumentCaptor;
 
-public class OrderControllerTests {
+public class StoreTests {
 
     @Test
-    public void testSaveOrdertoDb() {
+    public void save_order_to_db() {
         Database database = mock(Database.class);
-        OrderController orderController = new OrderController(database);
+        Store orderController = new Store(database);
 
         //action
         orderController.create(new OrderPayload(42));
@@ -31,7 +27,7 @@ public class OrderControllerTests {
     @Test
     public void mapThePayloadToTheOrderBusinessObject() {
         Database database = mock(Database.class);
-        OrderController subject = new OrderController(database);
+        Store subject = new Store(database);
 
         ArgumentCaptor<Order> captor = ArgumentCaptor.forClass(Order.class);
 
@@ -46,7 +42,7 @@ public class OrderControllerTests {
     @Test
     public void testReturnIdToClient() {
         Database database = mock(Database.class);
-        OrderController subject = new OrderController(database);
+        Store subject = new Store(database);
 
         when(database.save(any(Order.class))).thenReturn((long) 13);
         long orderId = subject.create(new OrderPayload(43));
@@ -55,7 +51,7 @@ public class OrderControllerTests {
     @Test
     public void testReturnOrderFromDatabase(){
         Database database = mock(Database.class);
-        OrderController subject = new OrderController(database);
+        Store subject = new Store(database);
 
         //action
         subject.find(42);
@@ -66,7 +62,7 @@ public class OrderControllerTests {
 
     @Test public void testReturnOrderToClient() {
         Database database = mock(Database.class);
-        OrderController subject = new OrderController(database);
+        Store subject = new Store(database);
 
         Order returnedOrder = new Order();
         when(database.find(42)).thenReturn(returnedOrder);

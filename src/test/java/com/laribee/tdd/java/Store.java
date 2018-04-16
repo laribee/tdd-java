@@ -1,10 +1,10 @@
 package com.laribee.tdd.java;
 
-public class OrderController {
+public class Store {
 
     private Database database;
 
-    public OrderController(Database database) {
+    public Store(Database database) {
 
         this.database = database;
     }
