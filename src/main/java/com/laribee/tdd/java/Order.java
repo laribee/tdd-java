@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Order {
 
+    private boolean voided;
     private ArrayList<OrderItem> items = new ArrayList<>();
     private String customer;
     public int customerId;
@@ -30,5 +31,13 @@ public class Order {
 
     public String getCustomerEmail() {
         return customer;
+    }
+
+    public void markVoid() {
+        voided = true;
+    }
+
+    public boolean voided() {
+        return voided;
     }
 }

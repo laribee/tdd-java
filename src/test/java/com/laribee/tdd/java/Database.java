@@ -4,4 +4,6 @@ public interface Database {
     long save(Order order);
 
     Order find(int i);
+
+    long persist(Order order);
 }

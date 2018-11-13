@@ -8,13 +8,23 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
 
 import org.junit.Test;
-
 import static org.mockito.Mockito.*;
-
-
 import org.mockito.ArgumentCaptor;
 
 public class OrderControllerTests {
+
+    @Test
+    public void save_the_newly_created_order_to_the_database() {
+        // Arrange
+        Database database = mock(Database.class);
+        OrderController subject = new OrderController(database);
+
+        // Act
+        subject.create(new OrderPayload(42));
+
+        // Assert
+        verify(database).persist(any(Order.class));
+    }
 
     @Test
     public void testSaveOrdertoDb() {
@@ -30,6 +40,7 @@ public class OrderControllerTests {
 
     @Test
     public void mapThePayloadToTheOrderBusinessObject() {
+
         Database database = mock(Database.class);
         OrderController subject = new OrderController(database);
 
@@ -62,6 +73,34 @@ public class OrderControllerTests {
 
         //assertion
         verify(database).find(42);
+    }
+
+    @Test
+    public void voiding_an_order__lookup_order_from_db() {
+        Database database = mock(Database.class);
+        OrderController subject = new OrderController(database);
+
+        subject.markVoid(42);
+
+        verify(database).find(42);
+    }
+
+    @Test
+    public void voiding_an_order__call_void_on_the_returned_order() {
+
+        // Arrange
+        Database database = mock(Database.class);
+        OrderController subject = new OrderController(database);
+
+        Order theOrder = new Order();
+        when(database.find(42)).thenReturn(theOrder); // classically, a stub
+
+        // Act
+        subject.markVoid(42);
+
+        // Assert (kinda)
+        assertTrue(theOrder.voided());
+
     }
 
     @Test public void testReturnOrderToClient() {
